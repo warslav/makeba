@@ -1,0 +1,9 @@
+.vs/
+bin/
+env/
+news.pyproj
+news.pyproj.user
+news.sln
+.idea/
+__pycache__/
+*.pyc
