@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Change User{% endblock title %}
+
+{% block content %}
+<h2>Change User</h2>
+<form method='post' enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type='submit' class='btn btn-success'>Save</button>
+</form>
+{% endblock content %}

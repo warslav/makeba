@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
     # Local
     'users.apps.UsersConfig',
-    'pages.apps.PagesConfig',
     'articles.apps.ArticlesConfig',
 ]
 
@@ -132,8 +131,8 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'article_list'
+LOGOUT_REDIRECT_URL = 'article_list'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
