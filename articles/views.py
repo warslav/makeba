@@ -5,8 +5,9 @@ from django.contrib.auth.mixins import (
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 
-from .models import Article
+from .models import Article, Comment
 
 
 class ArticleListView(ListView):
@@ -50,4 +51,17 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class ArticleCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    template_name = 'article_comment.html'
+    fields = ('comment',)
+    login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        self.art = get_object_or_404(Article, id=self.kwargs['article_id'])
+        form.instance.article = self.art
         return super().form_valid(form)

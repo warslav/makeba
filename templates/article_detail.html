@@ -9,5 +9,14 @@
 
     <p><a href='{% url 'article_edit' article.pk %}'>Edit</a> |
         <a href='{% url 'article_delete' article.pk %}'>Delete</a></p>
+    <div class='card-footer'>
+        {% for comment in article.comments.all %}
+            <p>
+                <span class='font-weight-bold'>{{ comment.author }} &middot;</span>
+                {{ comment }}
+            </p>
+        {% endfor %}
+    </div>
+    <a href='{% url 'article_comment' article.pk %}' class='btn btn-info mt-3'>Add comment</a>
     <p>Back to <a href='{% url 'article_list' %}'>All Articles</a>.</p>
 {% endblock content %}
